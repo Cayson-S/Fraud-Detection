@@ -3,6 +3,14 @@ Fraud_Detection
 
 The project fufills the requirements set by the data science capstone. It looks to predict fraud from transaction data.
 
+This project classifies transactions as fraudulent or legitimate. To do this, I employ two different classification models: Logistic regression and [Update Later].
+
+Features
+--------
+
+* TODO
+
+
 Project Organization
 ------------
 
