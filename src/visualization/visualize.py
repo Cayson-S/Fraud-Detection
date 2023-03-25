@@ -16,9 +16,6 @@ ds_fraud = pd.read_csv("./data/external/Fraud_Data.csv")
 ds_fraud = ds_fraud[["step", "amount", "oldbalanceOrg", "newbalanceOrig", "oldbalanceDest", "newbalanceDest", 
                               "isFraud", "isFlaggedFraud"]].apply(pd.to_numeric)
 
-# Get some summary statistics on the original dataframe
-print(ds_fraud.describe())
-
 # Creates up to two boxplots from the supplied data
 # If a filename is supplied, it is saved to "./reports/figures/"
 def transaction_boxplots(data1: pd.Series, data2: pd.Series, title: str, y_label: str, x_label1: str,
@@ -44,6 +41,9 @@ def transaction_boxplots(data1: pd.Series, data2: pd.Series, title: str, y_label
         plt.savefig("./reports/figures/" + file_name, dpi = "figure", format = "png", bbox_inches = "tight")
     else:
         plt.show()
+
+# Get some summary statistics on the original dataframe and save it to a csv
+ds_fraud.describe().to_csv("./reports/summary_stats_fraud_data.csv")
 
 # Side-by-side boxplot comparison of transaction amounts by fraud type
 transaction_boxplots(data1 = ds_fraud[ds_fraud["isFraud"] == 0]["amount"], 
