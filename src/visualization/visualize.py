@@ -1,5 +1,3 @@
-#%%
-
 import ydata_profiling as pp
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -21,30 +19,35 @@ ds_fraud = ds_fraud[["step", "amount", "oldbalanceOrg", "newbalanceOrig", "newba
 # Get some summary statistics on the original dataframe
 print(ds_fraud.describe())
 
-# What makes fraudulent transactions what they are?
-ds_only_fraud = ds_fraud.loc[ds_fraud["isFraud"] == 1]
+# Creates up to two boxplots from the supplied data
+# If a filename is supplied, it is saved to "./reports/figures/"
+def transaction_boxplots(data1: pd.Series, data2: pd.Series, title: str, y_label: str, x_label1: str,
+                         x_label2: str = None, file_name: str = None):
+    plt.figure(figsize = (9, 5))
+    plt.suptitle(title, x = 0.35)
+    plt.ticklabel_format(style = "plain")
+    ax1 = plt.subplot(131)
+    plt.tight_layout() 
+    plt.boxplot(data1)
+    plt.xticks(ticks = [])
+    plt.xlabel(x_label1)
+    plt.ylabel(y_label)
+    
+    if data2.any():
+        ax2 = plt.subplot(132, sharey = ax1)
+        plt.tight_layout()
+        plt.boxplot(data2)
+        plt.xticks(ticks = [])
+        plt.xlabel(x_label2)
+    
+    if file_name != None:
+        plt.savefig("./reports/figures/" + file_name, dpi = "figure", format = "png", bbox_inches = "tight")
+    else:
+        plt.show()
 
-# Check that the dataframe was created correctly
-print(ds_only_fraud.head())
+# Side-by-side boxplot comparison of transaction amounts by fraud type
+transaction_boxplots(data1 = ds_fraud[ds_fraud["isFraud"] == 0]["amount"], 
+    data2 = ds_fraud[ds_fraud["isFraud"] == 1]["amount"], title = "Transaction Amounts by Fraud Type",
+    x_label1 = "Non-Fraudulent", x_label2 = "Fraudulent", 
+    y_label = "Transaction Amount (In Millions Of Local Currency)", file_name = "amount_fraud_comparison.png")
 
-# Get some summary statistics on the new dataframe
-print(ds_only_fraud.describe())
-
-
-
-"""
-plt.hist(ds_only_fraud["amount"], bins = 7)
-plt.show()
-
-plt.hist(ds_only_fraud["oldbalanceOrg"], bins = 7)
-plt.show()
-
-plt.hist(ds_only_fraud["newbalanceOrig"], bins = 7)
-plt.show()
-
-plt.hist(ds_only_fraud["newbalanceDest"], bins = 7)
-plt.show()
-
-plt.hist(ds_only_fraud["isFlaggedFraud"], bins = 2)
-plt.show()
-"""
