@@ -46,10 +46,10 @@ def transaction_boxplots(data1: pd.Series, data2: pd.Series, title: str, y_label
         plt.show()
 
 # Side-by-side boxplot comparison of transaction amounts by fraud type
-# transaction_boxplots(data1 = ds_fraud[ds_fraud["isFraud"] == 0]["amount"], 
-#    data2 = ds_fraud[ds_fraud["isFraud"] == 1]["amount"], title = "Transaction Amounts by Fraud Type",
-#    x_label1 = "Non-Fraudulent", x_label2 = "Fraudulent", 
-#    y_label = "Transaction Amount (In Millions Of Local Currency)", file_name = "amount_fraud_comparison.png")
+transaction_boxplots(data1 = ds_fraud[ds_fraud["isFraud"] == 0]["amount"], 
+   data2 = ds_fraud[ds_fraud["isFraud"] == 1]["amount"], title = "Transaction Amounts by Fraud Type",
+   x_label1 = "Non-Fraudulent", x_label2 = "Fraudulent", 
+   y_label = "Transaction Amount (In Millions Of Local Currency)", file_name = "amount_fraud_comparison.png")
 
 # Side-by-side boxplot comparison of oldbalanceOrg by fraud type
 transaction_boxplots(data1 = ds_fraud[ds_fraud["isFraud"] == 0]["oldbalanceOrg"], 
