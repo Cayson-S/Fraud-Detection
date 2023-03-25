@@ -12,6 +12,14 @@ ds_fraud = pd.read_csv("./data/external/Fraud_Data.csv")
 #profile = ds_fraud.profile_report()
 #profile.to_file(output_file = "fraud_data_profile.html")
 
+# Data cleansing 
+
+# Convert the numeric data into appropriate numeric types
+ds_fraud = ds_fraud[["step", "amount", "oldbalanceOrg", "newbalanceOrig", "newbalanceDest", 
+                              "isFraud", "isFlaggedFraud"]].apply(pd.to_numeric)
+
+# Get some summary statistics on the original dataframe
+print(ds_fraud.describe())
 
 # What makes fraudulent transactions what they are?
 ds_only_fraud = ds_fraud.loc[ds_fraud["isFraud"] == 1]
@@ -22,8 +30,21 @@ print(ds_only_fraud.head())
 # Get some summary statistics on the new dataframe
 print(ds_only_fraud.describe())
 
-#for col in ds_only_fraud.columns:
-#    ds_only_fraud.hist(column = col)
 
-    
 
+"""
+plt.hist(ds_only_fraud["amount"], bins = 7)
+plt.show()
+
+plt.hist(ds_only_fraud["oldbalanceOrg"], bins = 7)
+plt.show()
+
+plt.hist(ds_only_fraud["newbalanceOrig"], bins = 7)
+plt.show()
+
+plt.hist(ds_only_fraud["newbalanceDest"], bins = 7)
+plt.show()
+
+plt.hist(ds_only_fraud["isFlaggedFraud"], bins = 2)
+plt.show()
+"""
