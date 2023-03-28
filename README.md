@@ -4,9 +4,11 @@ This project looks to classify transaction data as fraudulent.
 
 ## Background
 
-
-
-
+<p>&emsp;Monetary transactions are frequent occurrences as customers purchase products and services. While this behavior is normal, bad actors 
+can subvert this process by making fraudulent transactions. To minimize the damage done by these individuals and groups, mobile money services must be proactive in flagging 
+transactions that are likely fraudulent. Unfortunately, fraudulent transactions can be almost indistinguishable from legitimate ones. They can also occur at any time. This 
+combination of factors makes transactions near impossible for humans to speedily analyze for fraud. Thus, to protect their customers, mobile money services must invest in a 
+data science solution that uses statistical analyses to accurately identify and block transactions that have a high degree of probability of being fraudulent.</p>
 
 
 ## Project Organization
