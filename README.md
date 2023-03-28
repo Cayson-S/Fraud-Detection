@@ -1,18 +1,16 @@
-Fraud_Detection
-==============================
+# Fraud_Detection
 
-The project fufills the requirements set by the data science capstone. It looks to predict fraud from transaction data.
+This project looks to classify transaction data as fraudulent.
 
-This project classifies transactions as fraudulent or legitimate. To do this, I employ two different classification models: Logistic regression and [Update Later].
-
-Features
---------
-
-* TODO
+## Background
 
 
-Project Organization
-------------
+
+
+
+
+## Project Organization
+
 
     ├── LICENSE
     ├── Makefile           <- Makefile with commands like `make data` or `make train`
