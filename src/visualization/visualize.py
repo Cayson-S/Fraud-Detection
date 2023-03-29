@@ -2,9 +2,6 @@ import ydata_profiling as pp
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
-from sklearn import metrics
 
 # The date can be found at https://www.kaggle.com/datasets/ealaxi/paysim1
 ds_fraud = pd.read_csv("./data/external/Fraud_Data.csv")
@@ -94,28 +91,3 @@ transaction_boxplots(data1 = ds_fraud[ds_fraud["isFraud"] == 0]["newbalanceDest"
     data2 = ds_fraud[ds_fraud["isFraud"] == 1]["newbalanceDest"], title = "Destination New Balance by Transaction Fraud Type",
     x_label1 = "Non-Fraudulent", x_label2 = "Fraudulent", 
     y_label = "New Balance (In Millions Of Local Currency)", file_name = "new_destination_fraud_comparison.png")
-
-# -----------------------------------------------------------------------------------------
-
-# Regression Analysis
-# Split the data into train-test sets 
-X_train, X_test, y_train, y_test = train_test_split(ds_fraud.drop(columns = ["nameOrig", "nameDest", "isFraud", 
-    "isFlaggedFraud"]), ds_fraud["isFraud"], test_size = 0.2, random_state = 42)
-
-# Perform Logistic regression
-log_reg = LogisticRegression().fit(X_train, y_train)
-
-# The training accuracy is 0.9982788143877837
-print(log_reg.score(X_train, y_train))
-
-# Predict using the regression model
-y_pred = log_reg.predict(X_test)
-print(metrics.confusion_matrix(y_test, y_pred))
-
-# The test accuracy is 
-print(log_reg.score(X_test, y_test))
-
-# Get the classification report
-print(metrics.classification_report(y_test, y_pred, target_names = ["Not Fraudulent", "Fraudulent"]))
-
-# TODO: LDA, QDA, k-means, SVM 
