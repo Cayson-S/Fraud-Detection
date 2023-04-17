@@ -1,30 +1,53 @@
 # -*- coding: utf-8 -*-
-import click
-import logging
-from pathlib import Path
-from dotenv import find_dotenv, load_dotenv
+import pandas as pd
 
+class CleanData:
+    def __init__(self, name):
+        self.name = name
+    
+    def load_data(file: str) -> pd.DataFrame:
+        # This function reads the data from the external file
+        # :param file: file name
+        # :type file: str
+        # :returns: dataframe
+        # :rtype: pd.dataframe 
 
-@click.command()
-@click.argument('input_filepath', type=click.Path(exists=True))
-@click.argument('output_filepath', type=click.Path())
-def main(input_filepath, output_filepath):
-    """ Runs data processing scripts to turn raw data from (../raw) into
-        cleaned data ready to be analyzed (saved in ../processed).
-    """
-    logger = logging.getLogger(__name__)
-    logger.info('making final data set from raw data')
+        file_name = "../data/external/" + file
+        data = pd.read_csv(file_name, sep = " ", header = True)
 
+        return data
+    
+    def convert_to_numeric(data: pd.Dataframe, cols: list) -> pd.DataFrame:
+        # This function converts a list of columns to a numeric datatype
+        # :param data: the dataset
+        # :type data: pd.Dataframe
+        # :param cols: columns to be converted to a numeric datatype
+        # :type cols: list 
+        # :returns: dataframe
+        # :rtype: pd.dataframe 
 
-if __name__ == '__main__':
-    log_fmt = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-    logging.basicConfig(level=logging.INFO, format=log_fmt)
+        # Convert the numeric data into appropriate numeric types
+        data[cols].apply(pd.to_numeric)
 
-    # not used in this stub but often useful for finding various files
-    project_dir = Path(__file__).resolve().parents[2]
+        return data
+    
+    def convert_to_date(data: pd.DataFrame, col: str) -> pd.Dataframe:
+        # This function converts a column into a date field (an hour and a day column)
+        # The original column is an integer type representing the hours since the beginning of the month
+        # :param data: the dataset
+        # :type data: pd.Dataframe
+        # :param col: column location to be converted to a date field
+        # :type col: string 
+        # :returns: dataframe
+        # :rtype: pd.dataframe 
 
-    # find .env automagically by walking up directories until it's found, then
-    # load up the .env entries as environment variables
-    load_dotenv(find_dotenv())
+        # determine the day and hour of the transaction
+        # Add the data to new columns
+        for i in range(len(data)):
+            data["day"][i] = data[col][i]//24
+            data["hour"][i] = data[col][i] % 24
+        
+        # Remove the old column from the dataset
+        data.drop(col, index = 1, inplace = True)
 
-    main()
+        return data
