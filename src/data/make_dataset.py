@@ -12,12 +12,12 @@ class CleanData:
         # :returns: dataframe
         # :rtype: pd.dataframe 
 
-        file_name = "../data/external/" + file
-        data = pd.read_csv(file_name, sep = " ", header = True)
+        file_name = "../fraud_detection/data/external/" + file
+        data = pd.read_csv(file_name, sep = ",")
 
         return data
     
-    def convert_to_numeric(data: pd.Dataframe, cols: list) -> pd.DataFrame:
+    def convert_to_numeric(data: pd.DataFrame, cols: list) -> pd.DataFrame:
         # This function converts a list of columns to a numeric datatype
         # :param data: the dataset
         # :type data: pd.Dataframe

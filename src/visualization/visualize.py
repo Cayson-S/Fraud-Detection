@@ -3,21 +3,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-# The date can be found at https://www.kaggle.com/datasets/ealaxi/paysim1
-ds_fraud = pd.read_csv("./data/external/Fraud_Data.csv")
-
-# Data cleansing 
-# Convert the numeric data into appropriate numeric types
-ds_fraud[["step", "amount", "oldbalanceOrg", "newbalanceOrig", "oldbalanceDest", "newbalanceDest", 
-                              "isFraud", "isFlaggedFraud"]].apply(pd.to_numeric)
-
-# Feature engineering
-# Convert the type parameter to dummy variables
-ds_fraud = pd.get_dummies(ds_fraud, columns = ["type"], prefix = "", prefix_sep = "")
-
-# Look only at fraud data
-is_fraud = ds_fraud.loc[ds_fraud["isFraud"] == 1]
-
 # Get a bar plot of fraud data by transaction type
 for col in ["CASH_IN", "CASH_OUT", "DEBIT", "PAYMENT", "TRANSFER"]:
     plt.bar(col, sum(is_fraud[col]), 0.4, color = "red")

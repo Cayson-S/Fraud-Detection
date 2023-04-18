@@ -20,4 +20,4 @@ class TrainModel:
         # Get the training accuracy
         print("The logistic regression training accuracy is: ", log_reg.score(X, y))
 
-        return return log_reg
+        return log_reg
