@@ -5,22 +5,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn import metrics
 
-ds_fraud = pd.read_csv("./data/external/Fraud_Data.csv")
-
-# Data cleansing 
-# Convert the numeric data into appropriate numeric types
-ds_fraud[["step", "amount", "oldbalanceOrg", "newbalanceOrig", "oldbalanceDest", "newbalanceDest", 
-                              "isFraud", "isFlaggedFraud"]].apply(pd.to_numeric)
-
-# Feature engineering
-# Convert the type parameter to dummy variables
-ds_fraud = pd.get_dummies(ds_fraud, columns = ["type"], prefix = "", prefix_sep = "")
-
-# One-hot encoding - remove one of the unnecessary columns
-ds_fraud.drop("CASH_IN", axis = 1, inplace = True)
-
-# -----------------------------------------------------------------------------------------
-
 # Regression Analysis
 # Split the data into train-test sets 
 X_train, X_test, y_train, y_test = train_test_split(ds_fraud.drop(columns = ["nameOrig", "nameDest", "isFraud", 
