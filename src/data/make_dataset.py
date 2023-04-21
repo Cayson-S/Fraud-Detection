@@ -26,7 +26,25 @@ class CleanData:
         # :returns: dataframe
         # :rtype: pd.dataframe 
 
-        # Convert the numeric data into appropriate numeric types
-        data[cols].apply(pd.to_numeric)
+        data_copy = data.copy()
 
-        return data
+        # Convert the numeric data into appropriate numeric types
+        data_copy[cols].apply(pd.to_numeric)
+
+        return data_copy
+
+    def rename_col(data: pd.DataFrame, col: str, col_name: str) -> pd.DataFrame:
+        # This function renames a column
+        # :param data: the dataset
+        # :type data: pd.Dataframe
+        # :param col: column to be renamed
+        # :type col: string
+        # :param col_name: new column name
+        # :type col_name: string
+        # :returns: dataframe
+        # :rtype: pd.dataframe 
+
+        # Rename a column 
+        data_copy = data.rename(columns = {col: col_name})
+
+        return data_copy
