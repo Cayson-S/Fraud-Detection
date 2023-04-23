@@ -1,29 +1,36 @@
 import pandas as pd
-import matplotlib.pyplot as plt
-import numpy as np
-from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn import metrics
 
-# Regression Analysis
-# Split the data into train-test sets 
-X_train, X_test, y_train, y_test = train_test_split(ds_fraud.drop(columns = ["nameOrig", "nameDest", "isFraud", 
-    "isFlaggedFraud"]), ds_fraud["isFraud"], test_size = 0.2, random_state = 42)
+class predictModels:
+    def logistic_predict(X: pd.DataFrame, y: pd.DataFrame, scaler: StandardScaler, scalable_features: list, 
+                         log_model: LogisticRegression) -> metrics.classification_report:
+        # This function predicts from an already fit logistic regression model
+        # :param X: the prediction data
+        # :type X: pd.DataFrame
+        # :param y: the response variable (from the test set)
+        # :type y: pd.DataFrame 
+        # :param scaler: the function fit on training data from which to scale the test data
+        # :type scaler: StandardScalar 
+        # :param scalable_features: the list of columns that should be scalded
+        # :type scalable_features: list
+        # :param log_model: the logistic regression model
+        # :type log_model: LogisticRegression 
+        # :returns: the classification report for the logistic regression with the test data
+        # :rtype: metrics.classification_report
+        
+        # Scale the test data
+        X_scaled = X.copy()
+        X_scaled[scalable_features] = scaler.transform(X_scaled[scalable_features])
 
-# Perform Logistic regression
-log_reg = LogisticRegression().fit(X_train, y_train)
+        # Predict the response variable
+        y_pred = log_model.predict(X_scaled)
 
-# The training accuracy is 0.9982788143877837
-print(log_reg.score(X_train, y_train))
-
-# Predict using the regression model
-y_pred = log_reg.predict(X_test)
-print(metrics.confusion_matrix(y_test, y_pred))
-
-# The test accuracy is 
-print(log_reg.score(X_test, y_test))
-
-# Get the classification report
-print(metrics.classification_report(y_test, y_pred, target_names = ["Not Fraudulent", "Fraudulent"]))
+        # Print the accuracy
+        print(log_model.score(X_scaled, y))
+        
+        # return the classification report
+        return metrics.classification_report(y, y_pred, target_names = ["Not Fraudulent", "Fraudulent"])
 
 # TODO: LDA, QDA, k-means, SVM 
