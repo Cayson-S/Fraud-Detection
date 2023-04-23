@@ -1,18 +1,22 @@
-Fraud_Detection
-==============================
+# Fraud_Detection
 
-The project fufills the requirements set by the data science capstone. It looks to predict fraud from transaction data.
+This project looks to classify transaction data as fraudulent. The data is available to download from https://www.kaggle.com/datasets/ealaxi/paysim1
 
-This project classifies transactions as fraudulent or legitimate. To do this, I employ two different classification models: Logistic regression and [Update Later].
+## Background
 
-Features
---------
+<p>&emsp;Monetary transactions are frequent occurrences as customers purchase products and services. While this behavior is normal, bad actors 
+can subvert this process by making fraudulent transactions. To minimize the damage done by these individuals and groups, mobile money services must be proactive in flagging 
+transactions that are likely fraudulent. Unfortunately, fraudulent transactions can be almost indistinguishable from legitimate ones. They can also occur at any time. This 
+combination of factors makes transactions near impossible for humans to speedily analyze for fraud. Thus, to protect their customers, mobile money services must invest in a 
+data science solution that utilizes statistical analyses to accurately identify and block transactions that have a high degree of probability of being fraudulent.</p>
 
-* TODO
+<p>&emsp;The simulated data was created from a month of confidential transaction data sourced from a mobile money service company. The company operates in Africa. This project 
+predicts whether the transactions are fraudulent or not by utilizing several statistical classification models. The resulting models can be used on other transaction data from 
+the company to more accurately flag fraudulent transactions.</p>
 
 
-Project Organization
-------------
+## Project Organization
+
 
     ├── LICENSE
     ├── Makefile           <- Makefile with commands like `make data` or `make train`
