@@ -32,3 +32,5 @@ log_report = predictModels.logistic_predict(X_test, y_test, scaler, ["amount", "
 
 # print the classification report
 print(log_report)
+
+# Added a comment
