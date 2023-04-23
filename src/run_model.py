@@ -1,6 +1,7 @@
 from data.make_dataset import CleanData
 from features.build_features import BuildFeatures
-from models.train_model import TrainModel
+from models.train_model import TrainModels
+from models.predict_model import predictModels
 from sklearn.model_selection import train_test_split
 
 # Import the data
@@ -22,9 +23,14 @@ X_train, X_test, y_train, y_test = train_test_split(fraud_data_final[["amount", 
                                                                      "CASH_OUT", "DEBIT", "PAYMENT", "TRANSFER"]], 
                                                     fraud_data_final["isFraud"], test_size = 0.2, random_state = 42)
 
-# Logistic regression
-scaler, fraud_reg = TrainModel.logistic_model(X_train, y_train, ["amount", "oldbalanceOrig", "newbalanceOrig", "oldbalanceDest", 
-                                              "newbalanceDest", "day", "hour"])
+# Train and test a logistic regression
+scaler, fraud_reg = TrainModels.logistic_model(X_train, y_train, ["amount", "oldbalanceOrig", "newbalanceOrig", 
+                                              "oldbalanceDest", "newbalanceDest", "day", "hour"])
 
+log_report = predictModels.logistic_predict(X_test, y_test, scaler, ["amount", "oldbalanceOrig", "newbalanceOrig", "oldbalanceDest", 
+                               "newbalanceDest", "day", "hour"], fraud_reg)
 
+# print the classification report
+print(log_report)
 
+# Added a comment

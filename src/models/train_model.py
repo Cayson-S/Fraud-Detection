@@ -4,7 +4,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn import model_selection
 from sklearn import metrics
 
-class TrainModel:
+class TrainModels:
     def logistic_model(X: pd.DataFrame, y: pd.DataFrame, scalable_features: list) -> tuple:
         # This function fits a logistic regression model to the given data
         # It is recommended that training data be used (instead of the whole dataset)
