@@ -1,3 +1,12 @@
+#################################################################################
+# Author: Cayson Seipel
+#
+# Summary: This file contains the PredictModels class. This class contains two
+# main functions. The first function classifies test data from a given logistic
+# regression. The second function classifies test data from a given support
+# vector machine. For both functions, a confusion matrix is generated.
+#################################################################################
+
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 import statsmodels.api as sm
@@ -5,7 +14,10 @@ from sklearn.svm import SVC
 from sklearn import metrics
 import matplotlib.pyplot as plt
 
-class predictModels:
+class PredictModels:
+    def __init__(self, name):
+        self.name = name
+
     def logistic_predict(X: pd.DataFrame, y: pd.DataFrame, log_model: sm.Logit) -> tuple:
         # This function predicts from an already fit logistic regression model
         # :param X: the prediction data

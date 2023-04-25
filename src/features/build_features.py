@@ -1,3 +1,13 @@
+#################################################################################
+# Author: Cayson Seipel
+#
+# Summary: This file contains the BuildFeatures class. This class contains two
+# main functions. The first function converts a date field of a specific type
+# (see the function for more details) to a day and hour field. 
+# The second function converts a categorical field (called "type") to multiple
+# dummy variables.
+#################################################################################
+
 import pandas as pd
 import sys
 
@@ -32,7 +42,6 @@ class BuildFeatures:
         # This function converts a categorical column into dummy variables
         # The original column is a string representing the column to be one-hot encoded
         # IMPORTANT: The dataset must contain the column "type" which has multiple rows
-        #            One of the rows must be "CASH_IN"
         # :param data: the dataset
         # :type data: pd.Dataframe
         # :returns: dataframe
