@@ -1,4 +1,12 @@
-# -*- coding: utf-8 -*-
+#################################################################################
+# Author: Cayson Seipel
+#
+# Summary: This file contains the BuildFeatures class. This class contains three
+# main functions. The first function loads a specified dataset. The second
+# function converts the given fields to numeric datatypes. The third function
+# renames a column to a new name.
+#################################################################################
+
 import pandas as pd
 
 class CleanData:
@@ -6,7 +14,7 @@ class CleanData:
         self.name = name
     
     def load_data(file: str) -> pd.DataFrame:
-        # This function reads the data from the external file
+        # This function reads a dataset from an external file
         # :param file: file name
         # :type file: str
         # :returns: dataframe
@@ -26,6 +34,7 @@ class CleanData:
         # :returns: dataframe
         # :rtype: pd.dataframe 
 
+        # Create a copy of the data to preserve the original
         data_copy = data.copy()
 
         # Convert the numeric data into appropriate numeric types

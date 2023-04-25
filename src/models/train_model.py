@@ -1,3 +1,14 @@
+#################################################################################
+# Author: Cayson Seipel
+#
+# Summary: This file contains the TrainModels class. This class contains four 
+# main functions. The first function scales the data using scikit-learn's 
+# StandardScaler. The second function downsamples the data so that both classes
+# are equally represented in the data. The third function fits a logistic
+# regression model to the given data. Finally, the fourth function fits a
+# support vector machine to the given data.
+#################################################################################
+
 import pandas as pd
 from sklearn.utils import resample
 from sklearn.preprocessing import StandardScaler
@@ -8,6 +19,9 @@ from sklearn.inspection import permutation_importance
 import statsmodels.api as sm
 
 class TrainModels:
+    def __init__(self, name):
+        self.name = name
+
     def scale_data(to_scale: pd.DataFrame, scalable_features: list, scaler: StandardScaler = None) -> tuple:
         # :param to_scale: the dataset to scale
         # :type to_scale: pd.Dataframe
@@ -55,26 +69,28 @@ class TrainModels:
         # :returns: the logistic model
         # :rtype: LogisticRegression
 
-        best_feautures = X.copy()
-
         # Fit the statsmodels logistic model to determine features that have high p-values
-        logit = sm.Logit(y, sm.add_constant(best_feautures)).fit_regularized(method = "l1")
+        log_reg = sm.Logit(y, sm.add_constant(X)).fit_regularized()
 
         # Print the model summary to check p-values
-        print("The logistic regression summary: ", logit.summary2())
+        print("The logistic regression summary: ", log_reg.summary2())
 
-        return logit
+        return log_reg
 
-    def svm_model(X: pd.DataFrame, y: pd.DataFrame) -> SVC:
+    def svm_model(X: pd.DataFrame, y: pd.DataFrame, C_val: float = 3.0, gamma_val: float = 3.0) -> SVC:
         # This function fits a Support Vector Machine to the given data
         # It is recommended that training data be used (instead of the whole dataset)
         # :param X: the predictors (from the training set)
         # :type X: pd.Dataframe
         # :param y: the response variable (from the training set)
         # :type y: pd.Dataframe 
+        # :param C_val: the regularization parameter (greater than 0)
+        # :type C_val: float
+        # :param gamma: the kernel coefficient (greater than 0)
+        # :type gamma: float
         # :returns: the support vector machine
         # :rtype: svm
 
-        svm_train = SVC(kernel = "rbf", C = 3, gamma = 3).fit(X, y)
+        svm_train = SVC(kernel = "rbf", C = C_val, gamma = gamma_val).fit(X, y)
 
         return svm_train
