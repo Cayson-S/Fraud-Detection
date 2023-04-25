@@ -3,6 +3,8 @@ from sklearn.utils import resample
 from sklearn.preprocessing import StandardScaler
 from sklearn import model_selection
 from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC
+from sklearn.inspection import permutation_importance
 import statsmodels.api as sm
 
 class TrainModels:
@@ -41,7 +43,7 @@ class TrainModels:
 
         return downsampled_data
 
-    def logistic_model(X: pd.DataFrame, y: pd.DataFrame, num_iter: int = 100) -> sm.Logit:
+    def logistic_model(X: pd.DataFrame, y: pd.DataFrame) -> sm.Logit:
         # This function fits a logistic regression model to the given data
         # It is recommended that training data be used (instead of the whole dataset)
         # :param X: the predictors (from the training set and, ideally, scaled)
@@ -56,27 +58,23 @@ class TrainModels:
         best_feautures = X.copy()
 
         # Fit the statsmodels logistic model to determine features that have high p-values
-        logit = sm.Logit(y, sm.add_constant(best_feautures)).fit_regularized(method = "l1", maxiter = num_iter)
+        logit = sm.Logit(y, sm.add_constant(best_feautures)).fit_regularized(method = "l1")
 
         # Print the model summary to check p-values
         print("The logistic regression summary: ", logit.summary2())
 
-
-
         return logit
 
-    #def knn_model(X: pd.DataFrame, y: pd.DataFrame, num_iter: int = 2000) -> svm:
+    def svm_model(X: pd.DataFrame, y: pd.DataFrame) -> SVC:
         # This function fits a Support Vector Machine to the given data
         # It is recommended that training data be used (instead of the whole dataset)
         # :param X: the predictors (from the training set)
         # :type X: pd.Dataframe
         # :param y: the response variable (from the training set)
         # :type y: pd.Dataframe 
-        # :param num_iter: the maximum number of iterations allowed for the model
-        # :type num_iter: int 
         # :returns: the support vector machine
         # :rtype: svm
 
-        #svm_model = svm.LinearSVC(random_state = 42, tol = 1e-5, max_iter = num_iter).fit(X, y)
+        svm_train = SVC(kernel = "rbf", C = 3, gamma = 3).fit(X, y)
 
-        #return svm_model
+        return svm_train

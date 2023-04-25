@@ -32,8 +32,6 @@ plt.show()
 fraud_data_downsample = TrainModels.downsample(fraud_data_clean.drop(["newbalanceOrig", "newbalanceDest"], 
                                                                       axis = 1), "isFraud")
 
-print(fraud_data_downsample.describe())
-
 # Split the data into train-test sets 
 X_train, X_test, y_train, y_test = train_test_split(fraud_data_downsample[["amount", "oldbalanceOrig", "oldbalanceDest", 
                                                                            "day", "hour", "CASH_OUT", "DEBIT", "PAYMENT", 
@@ -48,14 +46,22 @@ scaler, X_train_scaled = TrainModels.scale_data(X_train, ["amount", "oldbalanceO
 # By using backwards stepwise feature elimination, all but the following were eliminated for having high p-values or coefficients equalling zero
 fraud_reg = TrainModels.logistic_model(X_train_scaled[["amount", "oldbalanceOrig", "oldbalanceDest", "day", "hour", "TRANSFER"]], y_train)
 
+# Train the smv model
+fraud_svm = TrainModels.svm_model(X_train_scaled, y_train)
+
 # Scale the test data
 scaler, X_test_scaled = TrainModels.scale_data(X_test, ["amount", "oldbalanceOrig", "oldbalanceDest", "day", "hour"], scaler)
 
+# Predict on each of the two models and get the classification reports
 log_report = predictModels.logistic_predict(X_test_scaled[["amount", "oldbalanceOrig", "oldbalanceDest", "day", "hour", "TRANSFER"]], y_test, fraud_reg)
+svm_report = predictModels.svm_predict(X_test_scaled, y_test, fraud_svm)
 
-# print the classification report
+# print the logistic classification report
+print("==========================================================")
+print("The Logistic Classification Report:")
 print(log_report[1])
 
-# Train the knn model
-
-
+# print the svm classification report
+print("==========================================================")
+print("The SVM Classification Report:")
+print(svm_report[1])
