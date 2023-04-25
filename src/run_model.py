@@ -3,6 +3,11 @@ from features.build_features import BuildFeatures
 from models.train_model import TrainModels
 from models.predict_model import predictModels
 from sklearn.model_selection import train_test_split
+import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+
+pd.set_option("display.max_columns", 20)
 
 # Import the data
 # The data can be found at https://www.kaggle.com/datasets/ealaxi/paysim1
@@ -14,23 +19,43 @@ fraud_data = CleanData.convert_to_numeric(fraud_data, ["step", "amount", "oldbal
 fraud_data = CleanData.rename_col(fraud_data, "oldbalanceOrg", "oldbalanceOrig")
 
 # Feature engineering
-fraud_data_final = BuildFeatures.convert_to_date(fraud_data, "step")
-fraud_data_final = BuildFeatures.convert_to_dummy(fraud_data_final)
+fraud_data_clean = BuildFeatures.convert_to_date(fraud_data, "step")
+fraud_data_clean = BuildFeatures.convert_to_dummy(fraud_data_clean)
+
+corr_matrix = fraud_data_clean.corr()
+
+sns.heatmap(corr_matrix, cmap = "YlGnBu", annot = True)
+plt.show()
+
+# Remove highly correlated columns
+# The columns removed are already captured by the amount and original balance columns
+fraud_data_downsample = TrainModels.downsample(fraud_data_clean.drop(["newbalanceOrig", "newbalanceDest"], 
+                                                                      axis = 1), "isFraud")
+
+print(fraud_data_downsample.describe())
 
 # Split the data into train-test sets 
-X_train, X_test, y_train, y_test = train_test_split(fraud_data_final[["amount", "oldbalanceOrig", "newbalanceOrig", 
-                                                                     "oldbalanceDest", "newbalanceDest", "day", "hour", 
-                                                                     "CASH_OUT", "DEBIT", "PAYMENT", "TRANSFER"]], 
-                                                    fraud_data_final["isFraud"], test_size = 0.2, random_state = 42)
+X_train, X_test, y_train, y_test = train_test_split(fraud_data_downsample[["amount", "oldbalanceOrig", "oldbalanceDest", 
+                                                                           "day", "hour", "CASH_OUT", "DEBIT", "PAYMENT", 
+                                                                           "CASH_IN", "TRANSFER"]], 
+                                                    fraud_data_downsample["isFraud"], test_size = 0.2, random_state = 42)
 
-# Train and test a logistic regression
-scaler, fraud_reg = TrainModels.logistic_model(X_train, y_train, ["amount", "oldbalanceOrig", "newbalanceOrig", 
-                                              "oldbalanceDest", "newbalanceDest", "day", "hour"])
+# Scale the training data for the two models
+scaler, X_train_scaled = TrainModels.scale_data(X_train, ["amount", "oldbalanceOrig", "oldbalanceDest", "day", "hour"])
 
-log_report = predictModels.logistic_predict(X_test, y_test, scaler, ["amount", "oldbalanceOrig", "newbalanceOrig", "oldbalanceDest", 
-                               "newbalanceDest", "day", "hour"], fraud_reg)
+
+# Train a logistic regression
+# By using backwards stepwise feature elimination, all but the following were eliminated for having high p-values or coefficients equalling zero
+fraud_reg = TrainModels.logistic_model(X_train_scaled[["amount", "oldbalanceOrig", "oldbalanceDest", "day", "hour", "TRANSFER"]], y_train)
+
+# Scale the test data
+scaler, X_test_scaled = TrainModels.scale_data(X_test, ["amount", "oldbalanceOrig", "oldbalanceDest", "day", "hour"], scaler)
+
+log_report = predictModels.logistic_predict(X_test_scaled[["amount", "oldbalanceOrig", "oldbalanceDest", "day", "hour", "TRANSFER"]], y_test, fraud_reg)
 
 # print the classification report
-print(log_report)
+print(log_report[1])
 
-# Added a comment
+# Train the knn model
+
+
