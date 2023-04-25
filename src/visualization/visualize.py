@@ -9,9 +9,6 @@ for col in ["CASH_IN", "CASH_OUT", "DEBIT", "PAYMENT", "TRANSFER"]:
 
 plt.show()
 
-# One-hot encoding - remove one of the unnecessary columns
-ds_fraud.drop("CASH_IN", axis = 1, inplace = True)
-
 # Creates up to two boxplots from the supplied data
 # If a filename is supplied, it is saved to "./reports/figures/"
 def transaction_boxplots(data1: pd.Series, data2: pd.Series, title: str, y_label: str, x_label1: str,
@@ -41,8 +38,8 @@ def transaction_boxplots(data1: pd.Series, data2: pd.Series, title: str, y_label
 
 # Create a Pandas Profiling report
 # The results are in fraud_detection_profile.html in the reports directory 
-profile = ds_fraud.profile_report()
-profile.to_file(output_file = "fraud_data_profile.html")
+#profile = ds_fraud.profile_report()
+#profile.to_file(output_file = "fraud_data_profile.html")
 
 # Get some summary statistics on the original dataframe and save it to a csv
 ds_fraud.describe().to_csv("./reports/summary_stats_fraud_data.csv")

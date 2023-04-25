@@ -1,36 +1,34 @@
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
-from sklearn.linear_model import LogisticRegression
+import statsmodels.api as sm
 from sklearn import metrics
+import matplotlib.pyplot as plt
 
 class predictModels:
-    def logistic_predict(X: pd.DataFrame, y: pd.DataFrame, scaler: StandardScaler, scalable_features: list, 
-                         log_model: LogisticRegression) -> metrics.classification_report:
+    def logistic_predict(X: pd.DataFrame, y: pd.DataFrame, log_model: sm.Logit) -> tuple:
         # This function predicts from an already fit logistic regression model
         # :param X: the prediction data
         # :type X: pd.DataFrame
         # :param y: the response variable (from the test set)
         # :type y: pd.DataFrame 
-        # :param scaler: the function fit on training data from which to scale the test data
-        # :type scaler: StandardScalar 
-        # :param scalable_features: the list of columns that should be scalded
-        # :type scalable_features: list
         # :param log_model: the logistic regression model
         # :type log_model: LogisticRegression 
-        # :returns: the classification report for the logistic regression with the test data
-        # :rtype: metrics.classification_report
-        
-        # Scale the test data
-        X_scaled = X.copy()
-        X_scaled[scalable_features] = scaler.transform(X_scaled[scalable_features])
+        # :returns: the confusion matrix and classification report for the logistic regression
+        # :rtype: a tuple containing metrics.confusion_matrix and metrics.classification_report
 
         # Predict the response variable
-        y_pred = log_model.predict(X_scaled)
+        y_pred = log_model.predict(sm.add_constant(X))
 
         # Print the accuracy
-        print(log_model.score(X_scaled, y))
+        as_binary = (y_pred >= 0.5).astype(int)
         
+        # Show the confusion matrix
+        cm = metrics.confusion_matrix(y, as_binary, labels = [0, 1])
+        cm_display = metrics.ConfusionMatrixDisplay(confusion_matrix = cm, display_labels = [0, 1])
+        cm_display.plot(values_format = ".1f")
+        plt.show()
+
         # return the classification report
-        return metrics.classification_report(y, y_pred, target_names = ["Not Fraudulent", "Fraudulent"])
+        return cm, metrics.classification_report(y, as_binary, target_names = ["Not Fraudulent", "Fraudulent"])
 
 # TODO: LDA, QDA, k-means, SVM 

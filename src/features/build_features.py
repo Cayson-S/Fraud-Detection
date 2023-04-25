@@ -49,11 +49,4 @@ class BuildFeatures:
             print("the column \"type\" does not exist in the data.")
             sys.exit(1)
 
-        if (remove_cash_in == True):
-            # Ensure that the data contains a "CASH_IN" column
-            try:
-                data_copy.drop("CASH_IN", axis = 1, inplace = True)
-            except:
-                print("\"CASH_IN\" does not exist in the data.")
-
         return data_copy
