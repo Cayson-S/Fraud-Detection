@@ -35,7 +35,7 @@ Logistic Regression
 
 <br></br>
 
-<p>&emsp;The second model, a support vector machine (SVM), was also trained on the data. In general, an SVM separates data by placing a hyperplane between classes. When using am SVM with a non-linear kernel, the SVM expands the data to a higher dimension where the data becomes linearly separable. An example of a non-linear SVM is shown in Figure 1. In the figure, the non-linear SVM can separate the purple class from the blue class surrounding it. This method is much more difficult to explain than the logistic regression. However, it does output a prediction value (fraudulent or non-fraudulent) that is easy to understand.</p>
+<p>&emsp;The second model, a support vector machine (SVM), was also trained on the data. In general, an SVM separates data by placing a hyperplane between classes. When using am SVM with a non-linear kernel, the SVM expands the data to a higher dimension where the data becomes linearly separable. An example of a non-linear SVM is shown in Figure 1. In the figure, the non-linear SVM can separate the purple class from the blue class surrounding it. Because of its statistical complexity, this method is much more difficult to explain than the logistic regression. However, it does output a prediction value (fraudulent or non-fraudulent) that is easy to understand.</p>
 
 <br></br>
 
