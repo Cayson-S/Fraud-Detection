@@ -34,7 +34,7 @@ Logistic Regression
 <b>Figure 1</b>
 Non-Linear SVM
 
-<img width="480" alt="image" src="https://user-images.githubusercontent.com/71890506/234708397-2f057bd1-a719-40dc-ae7c-27e3e8017fc7.png">
+<img width="380" alt="image" src="https://user-images.githubusercontent.com/71890506/234708397-2f057bd1-a719-40dc-ae7c-27e3e8017fc7.png">
 
 <br></br>
 
@@ -45,21 +45,21 @@ Non-Linear SVM
 <b>Figure 2</b>
 Base Model Confusion Matrix
 
-<img width="480" alt="image" src="https://user-images.githubusercontent.com/71890506/234708397-2f057bd1-a719-40dc-ae7c-27e3e8017fc7.png">
+![image](https://user-images.githubusercontent.com/71890506/234709417-87360e61-6482-4669-9315-bfca088eacf8.png)
 
 <br></br>
 
 <b>Figure 3</b>
 Logistic Regression Confusion Matrix
 
-<img width="480" alt="image" src="https://user-images.githubusercontent.com/71890506/234708397-2f057bd1-a719-40dc-ae7c-27e3e8017fc7.png">
+![image](https://user-images.githubusercontent.com/71890506/234709453-e6cc3910-d77a-42db-8df8-0510ac98cc9f.png)
 
 <br></br>
 
 <b>Figure 3</b>
 Support Vector Machine Confusion Matrix
 
-<img width="480" alt="image" src="https://user-images.githubusercontent.com/71890506/234708397-2f057bd1-a719-40dc-ae7c-27e3e8017fc7.png">
+![image](https://user-images.githubusercontent.com/71890506/234709373-330ad87d-5e8b-4b7e-9b37-e4eb75a06ea5.png)
 
 <br></br>
 
