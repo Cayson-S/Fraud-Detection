@@ -31,9 +31,7 @@ Logistic Regression
 
 <br></br>
 
-<p>&emsp;The second model, a support vector machine (SVM), was also trained on the data. In general, an SVM separates data by placing a hyperplane between classes. When using a non-linear SVM, the SVM expands the data to a higher dimension where the data becomes linearly separable. An example of a non-linear SVM is shown in Figure 2. In the figure, the non-linear SVM can separate the purple class from the blue class surrounding it.</p>
-
-<p>&emsp;The second model, a support vector machine (SVM), was also trained on the data. In general, an SVM separates data by placing a hyperplane between classes. When using a non-linear SVM, the SVM expands the data to a higher dimension where the data becomes linearly separable. An example of a non-linear SVM is shown in Figure 1. In the figure, the non-linear SVM can separate the purple class from the blue class surrounding it./p>
+<p>&emsp;The second model, a support vector machine (SVM), was also trained on the data. In general, an SVM separates data by placing a hyperplane between classes. When using a non-linear SVM, the SVM expands the data to a higher dimension where the data becomes linearly separable. An example of a non-linear SVM is shown in Figure 1. In the figure, the non-linear SVM can separate the purple class from the blue class surrounding it.</p>
 
 <br></br>
 
@@ -43,6 +41,7 @@ Non-Linear SVM
 
 <img width="380" alt="image" src="https://user-images.githubusercontent.com/71890506/234708397-2f057bd1-a719-40dc-ae7c-27e3e8017fc7.png">
 
+<i>Note.</i> This image was sourced from Liu, Y. (2023). Lecture Notes.
 <br></br>
 
 ## Model Performance and Comparison
@@ -91,6 +90,11 @@ Support Vector Machine Confusion Matrix
 ## Conclusion
 
 <p>&emsp;In summation, I utilized two different models to predict fraud from synthetic transaction data. This data was created by a mobile money service that operates in an African country. The current model utilized by the company cannot accurately ascertain the fraudulence of a transaction. As such, both models that I fit to the data (logistic regression and a support vector machine) significantly outperformed it. Based on these results, I suggest replacing the base model with the highest-performing model found. The highest-performing model was the support vector machine which accurately flagged 94 percent of all fraudulent transactions. Successful implementation of the top model will save time and money for the mobile money services’ customers. These customers will now be less likely to be a victim of fraud. It will also increase the reputation of the money service in that it is now capable of better protecting its customers.</p>
+
+## References
+
+Liu, Y. (2023). <i>svm</i> [Lecture Notes]. Middle Tennessee State University.
+
 
 
 ## Project Organization
