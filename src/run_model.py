@@ -58,9 +58,16 @@ fraud_data_clean = BuildFeatures.convert_to_dummy(fraud_data_clean)
 #################################################################################
 
 # Create a Pandas Profile Report
-#Visualize.data_profile(fraud_data_clean)
+# There are no missing values 
+# The data will need to be standardized
+Visualize.data_profile(fraud_data_clean)
 
 # Side-by-side boxplot comparison of transaction amounts by fraud type
+# I did a lot of these to determine where the fraudulent transactions fit within the data
+# I learned that the transactions are intermixed throughout the data and 
+# don't appear to be linearly seperable
+# A non-linear classification technique will likely work best
+# I chose a support vector machine utilizing the RBF method to account for the non-linearity
 Visualize.transaction_boxplots(data1 = fraud_data_clean[fraud_data_clean["isFraud"] == 0]["amount"], 
    data2 = fraud_data_clean[fraud_data_clean["isFraud"] == 1]["amount"], 
    title = "Transaction Amounts by Fraud Type",
@@ -101,6 +108,7 @@ Visualize.transaction_boxplots(data1 = fraud_data_clean[fraud_data_clean["isFrau
     file_name = "new_destination_fraud_comparison.png")
 
 # A correlation plot of the data
+# Saved to ./reports for easy future access
 Visualize.correlation_matrix(fraud_data_clean, file_name = "corr_matrix.png")
 
 
@@ -109,6 +117,8 @@ Visualize.correlation_matrix(fraud_data_clean, file_name = "corr_matrix.png")
 #################################################################################
 
 # Get the confusion matrix for the current method
+# This will be the baseline method to beat in accuracy
+# It is pretty bad, so this shouldn't be too difficult to do
 report = PredictModels.performance_report(y = fraud_data_clean["isFraud"], y_pred = fraud_data_clean["isFlaggedFraud"], 
     file_name = "orig_conf_matrix.png")
 
