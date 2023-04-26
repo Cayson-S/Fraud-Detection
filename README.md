@@ -51,7 +51,7 @@ Non-Linear SVM
 
 ## Model Performance and Comparison
 
-<p>&emsp;After training both models, they must be tested to determine if they can accurately predict fraud using data they have not yet been exposed to. In addition, the original data includes information on whether the current fraud-prediction model has predicted each transaction as fraudulent. This model will be the baseline to test the logistic and support vector machine (SVM) models. A report was created for each model to compare them. The associated confusion matrices are shown in Figure 3, Figure 4, and Figure 5.</p>
+<p>&emsp;After training both models, they must be tested to determine if they can accurately predict fraud using data they have not yet been exposed to. In addition, the original data includes information on whether the current fraud-prediction model has predicted each transaction as fraudulent. This model will be the baseline to test the logistic and support vector machine (SVM) models. A report was created for each model to compare them. The associated confusion matrices are shown in Figure 3, Figure 4, and Figure 5. Confusion matrices were chosen because they output scores that are relatively easy for business executives to quickly understand and compare. Classification reports on the confusion matrices, while not shown in the report, are utilized to explain the performance of the models.</p>
 
 <br></br>
 
