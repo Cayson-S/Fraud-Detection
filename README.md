@@ -1,4 +1,4 @@
-# Fraud_Detection
+# Fraud Detection Project
 
 This project looks to classify transaction data as fraudulent. The data is available to download from https://www.kaggle.com/datasets/ealaxi/paysim1
 
@@ -80,7 +80,7 @@ Support Vector Machine Confusion Matrix
 
 <p>&emsp;Figure 5 represents the predictions made using the testing data on the support vector machine (SVM) model. As suspected, the nonlinear model could accurately separate fraudulent from non-fraudulent transactions. The SVM was able to flag 94 percent of all fraudulent transactions. This accuracy resulted in a total of over 1500 transactions being correctly flagged. </p>
 
-# Recommendation
+## Recommendation
 
 <p>&emsp;Given the results, I would recommend an overhaul of the current fraud detection system. Specifically, I would suggest that the current model be replaced with the support vector machine model. While logistic regression is easier to explain, the chosen model would be implemented in the backend, flagging transactions for potential fraud and requesting some action. Since this model would not require an explanation to perform these actions, I recommend implementing the more accurate model (the support vector machine).</p>
 
@@ -94,6 +94,8 @@ Support Vector Machine Confusion Matrix
 
 
 ## Project Organization
+
+<p>&emsp; To use this project, run run_model.py. This file imports all of the necessary scripts and performs the entire analysis. The visualizations are saved under ./reports/figures. The data is stored in ./data/external.</p>
 
 
     ├── LICENSE
@@ -124,6 +126,8 @@ Support Vector Machine Confusion Matrix
     ├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
     ├── src                <- Source code for use in this project.
     │   ├── __init__.py    <- Makes src a Python module
+    │   │
+    │   ├── run_model.py   <- Runs all of the scripts.
     │   │
     │   ├── data           <- Scripts to download or generate data
     │   │   └── make_dataset.py
