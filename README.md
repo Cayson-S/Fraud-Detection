@@ -41,7 +41,8 @@ Non-Linear SVM
 
 <img width="380" alt="image" src="https://user-images.githubusercontent.com/71890506/234708397-2f057bd1-a719-40dc-ae7c-27e3e8017fc7.png">
 
-<i>Note.</i> This image was sourced from Liu, Y. (2023). Lecture Notes.
+<i>Note.</i> This image was sourced from Liu, Y. (2023). 
+
 <br></br>
 
 ## Model Performance and Comparison
