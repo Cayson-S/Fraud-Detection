@@ -1,5 +1,8 @@
 # Fraud Detection Project
 
+Author: Cayson Seipel
+Date: 4/26/2023
+
 This project looks to classify transaction data as fraudulent. The data is available to download from https://www.kaggle.com/datasets/ealaxi/paysim1
 
 ## Background
