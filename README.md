@@ -86,7 +86,7 @@ Support Vector Machine Confusion Matrix
 
 ## Recommendation
 
-<p>&emsp;Given the results, I would recommend an overhaul of the current fraud detection system. Specifically, I would suggest that the current model be replaced with the support vector machine model. While logistic regression is easier to explain, the chosen model would be implemented in the backend, flagging transactions for potential fraud and requesting some action. Since this model would not require an explanation to perform these actions, I recommend implementing the more accurate model (the support vector machine).</p>
+<p>&emsp;Given the results, I would recommend an overhaul of the current fraud detection system. Specifically, I would suggest that the current model be replaced with the support vector machine model. While logistic regression is easier to explain, the chosen model would be implemented in the backend, flagging transactions for potential fraud and requesting some action. Since this model would not require an explanation to perform these actions, I recommend implementing the more accurate model (the support vector machine). Concerning ethics and bias, if the method is implemented so that flagged transactions are completely stopped, then there may be some ethical concerns surrounding people who consistently perform transactions that might be deemed as fraudulent. An example of this is an individual who is living paycheck to paycheck who empties their bank account after every pay period. No ethical or bias considerations have been identified if this model only asks for more information about the transaction instead of completely shutting down a potentially fraudulent transaction.</p>
 
 ## Next Steps
 
