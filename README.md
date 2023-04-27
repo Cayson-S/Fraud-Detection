@@ -51,7 +51,7 @@ Non-Linear SVM
 
 ## Model Performance and Comparison
 
-<p>&emsp;After training both models, they must be tested to determine if they can accurately predict fraud using data they have not yet been exposed to. In addition, the original data includes information on whether the current fraud-prediction model has predicted each transaction as fraudulent. This model will be the baseline to test the logistic and support vector machine (SVM) models. A report was created for each model to compare them. The associated confusion matrices are shown in Figure 3, Figure 4, and Figure 5. Confusion matrices were chosen because they output scores that are relatively easy for business executives to quickly understand and compare. Classification reports on the confusion matrices, while not shown in the report, are utilized to explain the performance of the models.</p>
+<p>&emsp;After training both models, they must be tested to determine if they can accurately predict fraud using data they have not yet been exposed to. In addition, the original data includes information on whether the current fraud-prediction model has predicted each transaction as fraudulent. This model will be the baseline to test the logistic and support vector machine (SVM) models. A report was created for each model to compare them. The associated confusion matrices are shown in Figure 2, Figure 3, and Figure 4. Confusion matrices were chosen because they output scores that are relatively easy for business executives to quickly understand and compare. Classification reports on the confusion matrices, while not shown in the report, are utilized to explain the performance of the models.</p>
 
 <br></br>
 
@@ -71,18 +71,18 @@ Logistic Regression Confusion Matrix
 
 <br></br>
 
-<b>Figure 3</b>
+<b>Figure 4</b>
 Support Vector Machine Confusion Matrix
 
 ![image](https://user-images.githubusercontent.com/71890506/234709373-330ad87d-5e8b-4b7e-9b37-e4eb75a06ea5.png)
 
 <br></br>
 
-<p>&emsp;For each confusion matrix, the top-left box represents the transactions correctly predicted to be non-fraudulent. The bottom-right box represents the transactions correctly identified as fraudulent. The other two boxes represent incorrect predictions. In Figure 3, the base model does not accurately predict non-fraudulent transactions. Instead, it selected almost 8200 transactions as non-fraudulent when they were the opposite. This base model predicted close to zero percent of the total fraudulent transactions.</p>
+<p>&emsp;For each confusion matrix, the top-left box represents the transactions correctly predicted to be non-fraudulent. The bottom-right box represents the transactions correctly identified as fraudulent. The other two boxes represent incorrect predictions. In Figure 2, the base model does not accurately predict non-fraudulent transactions. Instead, it selected almost 8200 transactions as non-fraudulent when they were the opposite. This base model predicted close to zero percent of the total fraudulent transactions.</p>
 
-<p>&emsp;Figure 4 represents the predictions made using the testing data on the logistic regression model. This model performed significantly better than the base model. The logistic model was able to accurately flag 79 percent of all fraudulent transactions for a total of almost 1300 fraudulent transactions. This drastic increase in accuracy suggests that fraudulent transactions contain specific features that make them unique compared to non-fraudulent transactions. </p>
+<p>&emsp;Figure 3 represents the predictions made using the testing data on the logistic regression model. This model performed significantly better than the base model. The logistic model was able to accurately flag 79 percent of all fraudulent transactions for a total of almost 1300 fraudulent transactions. This drastic increase in accuracy suggests that fraudulent transactions contain specific features that make them unique compared to non-fraudulent transactions. </p>
 
-<p>&emsp;Figure 5 represents the predictions made using the testing data on the support vector machine (SVM) model. As suspected, the nonlinear model could accurately separate fraudulent from non-fraudulent transactions. The SVM was able to flag 94 percent of all fraudulent transactions. This accuracy resulted in a total of over 1500 transactions being correctly flagged. </p>
+<p>&emsp;Figure 4 represents the predictions made using the testing data on the support vector machine (SVM) model. As suspected, the nonlinear model could accurately separate fraudulent from non-fraudulent transactions. The SVM was able to flag 94 percent of all fraudulent transactions. This accuracy resulted in a total of over 1500 transactions being correctly flagged. </p>
 
 ## Recommendation
 
