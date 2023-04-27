@@ -72,6 +72,7 @@ Logistic Regression Confusion Matrix
 <br></br>
 
 <b>Figure 4</b>
+
 Support Vector Machine Confusion Matrix
 
 ![image](https://user-images.githubusercontent.com/71890506/234709373-330ad87d-5e8b-4b7e-9b37-e4eb75a06ea5.png)
